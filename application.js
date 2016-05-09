@@ -1,5 +1,3 @@
-// var square = $("<div class='square'/>");
-
 var buildSquares = function () {
   var i = 0;
   var count = 256;
@@ -10,5 +8,9 @@ var buildSquares = function () {
 
 $(document).ready(function() {
   buildSquares();
+  $("#container").on('mouseenter', '.square', function() {
+    event.preventDefault();
+    $(this).addClass('black');
+  });
 });
 
