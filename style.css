@@ -14,20 +14,26 @@
   width: 800px;
   height: 500px;
   position: relative;
-  margin: auto auto;
+  margin: 0 auto;
   display: block;
   font-size: 0;
 }
 .square {
   height: 6%;
+  width: 6%;
   border-width: 1px;
   border-style: solid;
   border-color: black;
   display: inline-block;
-  width: 6%;
+  float: left;
   padding: 0;
   margin: 0;
 }
 .black {
   background-color: black;
+}
+#clear {
+  position: absolute;
+  top: 25px;
+  left: 25px;
 }
