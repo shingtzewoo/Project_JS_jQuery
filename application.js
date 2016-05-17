@@ -1,10 +1,25 @@
+
+//the default option for building the sketch pad when the page first loads;
 var buildSquares = function () {
   var count = 256;
   for (var i = 0; i < count; i++) {
   $("#container").append($("<div/>").addClass('square'));
   };
 }
-
+//when mouse hovers over squares, changes their color into a random color;
+var randomColor = function () {
+  $("#container").on('mouseenter', 'div', function() {
+    event.preventDefault();
+    $(this).css('background-color', "#"+((1<<24)*Math.random()|0).toString(16));
+    });
+}
+//when mouse hovers over squares, changes their color into black;
+var blackColor = function () {
+  $("#container").on('mouseenter', 'div', function() {
+    event.preventDefault();
+    $(this).addClass('black');
+  });
+}
 var buildSquares2 = function () {
       var ask = parseInt(prompt("How many squares per side would you want for your new sketch grid? (Max = 64)", "16"));
       var value = ask * ask;
@@ -32,16 +47,21 @@ var buildSquares2 = function () {
 
 $(document).ready(function() {
   buildSquares();
-  $("#container").on('mouseenter', 'div', function() {
-    event.preventDefault();
-    $(this).addClass('black');
-  });
+  blackColor();
   $("#clear").on('click', function() {
     event.preventDefault();
-    $('.square').unbind();
+    event.stopPropagation();
     $("div").removeClass('black');
     $('div > div').remove();
     buildSquares2();
+    blackColor();
+  });
+  // When #random button is clicked, a new sketch grid can be generated and
+  $("#random").on('click', function() {
+    event.preventDefault();
+    $('div > div').remove();
+    buildSquares2();
+    randomColor();
   });
 });
 
